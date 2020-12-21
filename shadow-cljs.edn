@@ -8,7 +8,7 @@
  :builds {:app {:target :browser
                 :output-dir "public/js"
                 :asset-path "js"
-                :modules {:main {:entries [starter.core]}}
+                :modules {:main {:init-fn starter.core/start}}
                 :devtools {:before-load starter.core/stop
                            :after-load starter.core/start
                            :http-root "public"

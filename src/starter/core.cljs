@@ -23,7 +23,7 @@
 
 
 (stylefy/class "background-transition"
-               {:transition "background-color 10s"})
+               {:transition "background-color 3s"})
 
 
 ;; (def style-with-modes
@@ -31,6 +31,10 @@
 ;;    ::stylefy/mode [[:before {:content "'CSS generated content'"}]
 ;;                    [:hover {:background-color "#ffedcf"}]
 ;;                    [:active {:background-color "blue" :color "white"}]]})
+
+(def title-style
+  {:font-size "3em"
+   ::stylefy/mode {:hover {:background-color "red"}}})
 
 
 (defn- Button
@@ -43,9 +47,7 @@
 (defn app
   []
   [:div
-   [:div (use-style style-with-modes) "test"]
-   [:div.background-transition  "test3"]
-   [Button "aafei"]])
+   [:div (use-style title-style {:class "background-transition"}) "やぁ"]])
 
 
 (defn stop
@@ -56,14 +58,14 @@
 (defn start
   []
   (js/console.log "Starting...")
+  (stylefy/init)
   (r/render [app]
-            (.getElementById js/document "app"))
-  (stylefy/init))
+            (.getElementById js/document "app")))
 
 
 (defn ^:export init
   []
   (start))
 
-
+;
 (init)
